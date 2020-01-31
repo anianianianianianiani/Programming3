@@ -1,4 +1,7 @@
-class GrassEater extends LivingCreature {
+var LiveForm = require("./LiveForm");
+var random = require("./random.js");
+
+module.exports = class GrassEater extends LiveForm {
     constructor(x, y) {
         super(x, y);
         this.energy = 8;

@@ -1,7 +1,6 @@
-var LivingCreature = require("LivingCreature")
+var random = require("./random.js");
 
-
-module.exports = class Gishatich extends LivingCreature {
+module.exports = class Gishatich{
     constructor(x, y) {
         super(x, y);
         this.energy = 4;

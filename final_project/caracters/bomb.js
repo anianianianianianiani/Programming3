@@ -1,3 +1,5 @@
+var random = require("./random.js");
+
 class bomb {
     constructor(x, y) {
         this.x = x;

@@ -1,7 +1,7 @@
 var LiveForm = require("./LiveForm");
 var random = require("./random");
 
-class Grass extends LivingCreature {
+module.exports = class Grass extends LiveForm {
 
     mul() {
         this.multiply++;

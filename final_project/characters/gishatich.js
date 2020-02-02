@@ -1,10 +1,10 @@
 var LiveForm = require("./LiveForm");
 var random = require("./random.js");
 
-module.exports = class GrassEater extends LiveForm {
+module.exports = class Gishatich {
     constructor(x, y) {
         super(x, y);
-        this.energy = 8;
+        this.energy = 4;
     }
     getNewCoordinates() {
         this.directions = [
@@ -26,8 +26,8 @@ module.exports = class GrassEater extends LiveForm {
         this.multiply++;
         var newCell = random(this.chooseCell(0));
         if (this.multiply >= 8 && newCell) {
-            var newGrass = new GrassEater(newCell[0], newCell[1], this.index);
-            grassEaterArr.push(newGrass);
+            var newGishatich = new Gishatich(newCell[0], newCell[1], this.index);
+            gishatichArr.push(newGishatich);
             matrix[newCell[1]][newCell[0]] = 1;
             this.multiply = 0;
             this.energy = 3;
@@ -36,14 +36,14 @@ module.exports = class GrassEater extends LiveForm {
     eat() {
         this.getNewCoordinates();
 
-        var filledCells = this.chooseCell(1);
+        var filledCells = this.chooseCell(2);
         if (filledCells.length != 0) {
             var randomCell = random(filledCells)
 
             var x = randomCell[0];
             var y = randomCell[1];
 
-            matrix[y][x] = 2;
+            matrix[y][x] = 3;
 
             matrix[this.y][this.x] = 0;
 
@@ -52,14 +52,14 @@ module.exports = class GrassEater extends LiveForm {
 
             this.energy++;
 
-            for (var i in grassArr) {
-                if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
-                    grassArr.splice(i, 1);
+            for (var i in grassEaterArr) {
+
+                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
+                    grassEaterArr.splice(i, 1);
                     break;
                 }
             }
-
-            if (this.energy >= 3) {
+            if (this.energy >= 10) {
                 this.mult();
             }
         }
@@ -75,27 +75,23 @@ module.exports = class GrassEater extends LiveForm {
             var x = randomCell[0];
             var y = randomCell[1];
 
-            matrix[y][x] = 2;
+            matrix[y][x] = 3;
 
             matrix[this.y][this.x] = 0;
 
             this.x = x;
             this.y = y;
         }
-
         if (this.energy <= 0) this.die();
     }
 
     die() {
         matrix[this.y][this.x] = 0;
-
-        for (var i in grassEaterArr) {
-            if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                grassEaterArr
-                    .splice(i, 1);
+        for (var i in gishatichArr) {
+            if (this.x == gishatichArr[i].x && this.y == gishatichArr[i].y) {
+                gishatichArr.splice(i, 1);
                 break;
             }
         }
     }
 }
-

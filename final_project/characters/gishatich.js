@@ -1,7 +1,7 @@
 var LiveForm = require("./LiveForm");
 var random = require("./random.js");
 
-module.exports = class Gishatich {
+module.exports = class Gishatich extends LiveForm {
     constructor(x, y) {
         super(x, y);
         this.energy = 4;

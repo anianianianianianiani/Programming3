@@ -21,6 +21,7 @@ grassEaterHashiv = 0;
 gishatichHashiv = 0;
 bombHashiv = 0;
 weather = "";
+var count = 0;
 // kerparHashiv = 0;
 // kerparHashiv = 0;
 
@@ -127,6 +128,22 @@ function creatingObjects() {
 creatingObjects();
 
 function game() {
+    count++;
+    if (count > 0 && count < 10) {
+        weather = "spring"
+    } else if( count >= 10 && count < 20){
+        weather = "summer"
+    } 
+    else if( count >= 20 && count < 30){
+        weather = "autumn"
+    } 
+    else if( count >= 30 && count < 40){
+        weather = "winter"
+    } 
+    else {
+        count = 0;
+    }
+
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
@@ -165,7 +182,8 @@ function game() {
         grassCounter: grassHashiv,
         grassEaterCounter: grassEaterHashiv,
         gishatichCounter: gishatichHashiv,
-        bombCounter: bombHashiv
+        bombCounter: bombHashiv,
+        weather: weather
         //kerparCounter: kerparHashiv
         //kerparCounter: kerparHashiv  
 

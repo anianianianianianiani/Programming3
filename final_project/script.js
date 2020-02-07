@@ -22,6 +22,7 @@ function setup() {
     let grassEaterCountElement = document.getElementById('grassEaterCount');
     let gishatichCountElement = document.getElementById('gishatichCount');
     let bombCountElement = document.getElementById('bombCount');
+    let weatherelement = document.getElementById('weather');
     //let kerparCountElement = document.getElementById('kerparCount');
     //let kerparCountElement = document.getElementById('kerparCount');
 
@@ -33,10 +34,12 @@ function setup() {
     function drawCreatures(data) {
         //! after getting data pass it to matrix variable
         matrix = data.matrix;
+        weatherelement.innerText = data.weather;
         grassCountElement.innerText = data.grassCounter;
-        grassEaterCountElement = data.grassEaterCounter;
-        gishatichCountElement = data.gishatichCounter;
-        bombCountElement = data.bombCounter;
+        grassEaterCountElement.innerText = data.grassEaterCounter;
+        gishatichCountElement.innerText = data.gishatichCounter;
+        bombCountElement.innerText = data.bombCounter;
+        
         // kerparCountElement = data.kerparCounter;
         // kerparCountElement = data.kerparCounter;
 
@@ -52,11 +55,22 @@ function setup() {
         //! Drawing and coloring RECTs
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] == 0) {
-                    fill('#acacac');
+                if (matrix[i][j] == 1) {
+                    if(weather == "spring") {                        
+                        fill('PaleGreen');
+                    } 
+                    else if (weather == "summer"){
+                        fill('SeaGreen');
+                    }
+                    else if (weather == "autumn"){
+                        fill('Chartreuse');
+                    }
+                    else if (weather == "winter"){
+                        fill('grey');
+                    }
                     rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 1) {
-                    fill("green");
+                } else if (matrix[i][j] == 0) {
+                    fill("grey");
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 2) {
                     fill("yellow");
